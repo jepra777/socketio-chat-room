@@ -84,7 +84,7 @@ const Chat = () => {
             <ScrollToBottom className='messages' debug={false}>
                 {messages.length > 0 ?
                     messages.map((msg, i) =>
-                    (<Box key={i-1} className={`message ${msg.user === name ? "my-message" : ""}`} m=".2rem 0">
+                    (<Box key={i} className={`message ${msg.user === name ? "my-message" : ""}`} m=".2rem 0">
                         <Text fontSize='xs' opacity='.7' ml='5px' className='user'>{msg.user}</Text>
                         <Text fontSize='sm' className='msg' p=".4rem .8rem" bg='white' borderRadius='15px' color='white'>{msg.text}</Text>
                     </Box>)
