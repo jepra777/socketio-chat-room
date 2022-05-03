@@ -29,6 +29,7 @@ const Chat = () => {
         socket.on("message", msg => {
             setMessages(messages => [...messages, msg])
         })
+        // console.log(messages)
 
         socket.on("notification", notif => {
             toast({
@@ -97,6 +98,7 @@ const Chat = () => {
                         <Box ml='2'>-----</Box>
                     </Flex>
                 }
+               
             </ScrollToBottom>
             <div className='form'>
                 <input type="text" placeholder='Enter Message' value={message} onChange={e => setMessage(e.target.value)} />

@@ -5,7 +5,7 @@ import {useNavigate} from 'react-router-dom'
 
 export default function DefaultPage() {
     const history = useNavigate()
-    const redirect = () => history.push('/')
+    const redirect = () => history('/')
     return (
         <div>
             <IconButton mr={2} isRound='true' bg='green.300' color='white' icon={<BiArrowBack/>} onClick={redirect} />
