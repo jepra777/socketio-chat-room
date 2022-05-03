@@ -2,8 +2,8 @@ import React from 'react'
 import io from 'socket.io-client'
 const SocketContext = React.createContext()
 const SocketProvider = ({children}) => {
-    const ENDPOINT = 'http://localhost/'
-    const socket = io(ENDPOINT, {transports: ['websocket', 'polling']})
+    const ENDPOINT = 'http://localhost:3001'
+    const socket = io(ENDPOINT, {transports: ['websocket']})
     return(
         <SocketContext.Provider value={socket}>
             {children}

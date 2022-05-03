@@ -1,28 +1,29 @@
 import React, {useContext, useEffect, useState} from 'react'
-import {useHistory} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 import {MainContext} from '../../mainContext'
 import {SocketContext} from '../../socketContext'
 import {Box, Flex, Heading, IconButton, Text, Menu, Button, MenuButton, MenuList, MenuItem} from "@chakra-ui/react"
 import {FiList} from 'react-icons/fi'
 import {BiMessageDetail} from 'react-icons/bi'
 import {RiSendPlaneFill} from 'react-icons/ri'
-import {ScrollToBottom} from 'react-scroll-to-bottom'
+import ScrollToBottom from 'react-scroll-to-bottom';
 import {useToast} from '@chakra-ui/react'
 import {UsersContext} from '../../usersContext'
+import './Chat.scss'
 
 const Chat = () => {
     const {name, room, setName, setRoom} = useContext(MainContext)
     const socket = useContext(SocketContext)
     const [message, setMessage] = useState('')
-    const [messages, setMessages] = useStete([])
+    const [messages, setMessages] = useState([])
     const {users} = useContext(UsersContext)
-    const history = useHistory()
+    const history = useNavigate()
     const toast = useToast()
 
     window.onpopstate = e => logout()
     
     //Checks to see if there's a user present
-    useEffect(() => {if (!name) return history.push('/')}, [history, name])
+    useEffect(() => {if (!name) return history('/')}, [history, name])
 
     useEffect(() => {
         socket.on("message", msg => {
@@ -49,8 +50,8 @@ const Chat = () => {
     const logout = () => {
         setName('') 
         setRoom('')
-        history.push('/')
-        history.go(0)
+        history('/')
+        history(0)
     }
 
     return (
@@ -83,7 +84,7 @@ const Chat = () => {
             <ScrollToBottom className='messages' debug={false}>
                 {messages.length > 0 ?
                     messages.map((msg, i) =>
-                    (<Box key={i} className={`message ${msg.user === name ? "my-message" : ""}`} m=".2rem 0">
+                    (<Box key={i-1} className={`message ${msg.user === name ? "my-message" : ""}`} m=".2rem 0">
                         <Text fontSize='xs' opacity='.7' ml='5px' className='user'>{msg.user}</Text>
                         <Text fontSize='sm' className='msg' p=".4rem .8rem" bg='white' borderRadius='15px' color='white'>{msg.text}</Text>
                     </Box>)

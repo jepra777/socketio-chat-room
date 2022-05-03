@@ -1,5 +1,5 @@
-import React, {useContext, useState, useEffect} from 'react'
-import {useHistory} from 'react-router-dom'
+import React, {useContext, useEffect} from 'react'
+import {useNavigate} from 'react-router-dom'
 import {MainContext} from '../../mainContext'
 import {SocketContext} from '../../socketContext'
 import {Flex, Heading, IconButton, Input} from '@chakra-ui/react'
@@ -10,7 +10,7 @@ import {UsersContext} from '../../usersContext'
 const Login = () => {
     const socket = useContext(SocketContext)
     const { name, setName, room, setRoom } = useContext(MainContext)
-    const history = useHistory()
+    const history = useNavigate()
     const toast = useToast()
     const { setUsers } = useContext(UsersContext)
 
@@ -35,7 +35,7 @@ const Login = () => {
                     isClosable: true,
                 })
             }
-            history.push('/chat')
+            history('/chat')
             return toast({
                 position: "top",
                 title: "Hey there",

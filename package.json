@@ -7,7 +7,7 @@
   "author": "jepra777 <jere.prasetyo.jp@gmail.com>",
   "license": " ",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "node app.js"
   },
   "dependencies": {
     "cors": "^2.8.5",

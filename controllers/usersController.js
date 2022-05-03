@@ -8,13 +8,13 @@ const addUser = (id, name, room) => {
     if(!room) return {error: "Room is required"}
     if(!name) return {error: "Username is required"}
 
-    const user = {id, mame, room}
+    const user = {id, name, room}
     users.push(user)
     return { user }
 }
 
 const getUser = id => {
-    let user = users.find(user => user.id == id)
+    let user = users.find(user => user.id === id)
     return user
 }
 
